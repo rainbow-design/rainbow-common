@@ -11,4 +11,6 @@ package-lock.json
 yarn.lock
 yarn-error.log
 npm-debug.log
+# 测试覆盖率
+coverage
 

@@ -1,14 +1,16 @@
 {
-  "name": "rainbow",
+  "name": "rainbow-utils",
   "version": "0.0.1",
-  "description": "",
+  "description": "Rainbow 的前端业务代码工具库",
   "main": "index.js",
   "directories": {},
   "scripts": {
     "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
     "test": "jest",
     "dev": "cross-env NODE_ENV=development webpack",
-    "build": "cross-env NODE_ENV=production webpack -p"
+    "build": "cross-env NODE_ENV=production webpack -p",
+    "coverage": "jest --coverage",
+    "upload-coverage": "nyc report --reporter json && codecov -f ./coverage/coverage-final.json"
   },
   "husky": {
     "hooks": {
@@ -22,6 +24,7 @@
     ],
     "test/*.{js}": [
       "prettier --write",
+      "npm run test",
       "git add"
     ]
   },
@@ -30,7 +33,10 @@
     "url": "git+https://github.com/yanyue404/rainbow.js.git"
   },
   "keywords": [
-    "utils"
+    "utils",
+    "rainbow",
+    "function",
+    "tool"
   ],
   "author": "yanyue404",
   "license": "ISC",
@@ -44,10 +50,12 @@
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-conventional": "^9.1.1",
     "babel-jest": "^26.1.0",
+    "codecov": "^3.7.1",
     "cross-env": "^7.0.2",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
+    "nyc": "^15.1.0",
     "prettier": "^2.0.5",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
