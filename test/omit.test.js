@@ -4,7 +4,7 @@ const obj = {
   name: 'yue',
   friend: 'heizi',
 };
-test(`The result  is "{name: 'yue',friend: 'heizi',}".`, () => {
+test(`The result is "{name: 'yue',friend: 'heizi',}".`, () => {
   expect(omit(obj, ['id'])).toEqual({
     name: 'yue',
     friend: 'heizi',

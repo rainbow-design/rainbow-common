@@ -3,7 +3,7 @@ import { parse } from '../src';
 let url =
   'http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&d&enabled';
 
-test(`The result  is "{user: 'anonymous',
+test(`The result is "{user: 'anonymous',
       id: [123, 456],
       city: '北京',
       enabled: true,}".`, () => {

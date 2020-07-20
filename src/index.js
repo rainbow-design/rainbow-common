@@ -113,6 +113,11 @@ export const hasOwn = function (obj, key) {
   return obj != null && hasOwnProperty.call(obj, key);
 };
 
+// 将一组类数组转换为数组
+export function toArray(obj) {
+  return Array.from ? Array.from(obj) : Array.prototype.slice.call(obj);
+}
+
 export const shallowCopy = (obj) => {
   // 只拷贝对象
   if (typeof obj !== 'object') return;
@@ -167,6 +172,23 @@ export const only = (obj, keys) => {
     return ret;
   }, {});
 };
+
+/**
+ *
+ * @param {*} arr
+ * @param {*} props 数组子项排序的key
+ * @param {*} type 默认正序，传 'desc`为倒序排列
+ * @returns
+ */
+export function sortBy(arr, props, type) {
+  return arr.sort(function (a, b) {
+    if (type === 'desc') {
+      return b[props] - a[props];
+    }
+    return a[props] - b[props];
+  });
+}
+
 /**
  * 数组对象根据某一个相同的键去重
  *
@@ -241,14 +263,51 @@ export function throttle(fn, wait = 1500) {
   };
 }
 
-export const debounce = (func, wait) => {
-  let timeout;
+/**
+ * 防抖 一定时间内连续调用只允许执行一次
+ *
+ * @param {*} func
+ * @param {*} wait 等待时间
+ * @param {*} immediate 传 true，首次调用即立即执行
+ * @returns
+ */
+export function debounce(func, wait, immediate) {
+  var timeout;
   return function () {
-    const context = this;
-    const args = arguments;
+    var context = this;
+    var args = arguments;
     if (timeout) clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      func.apply(context, args);
-    }, wait);
+    if (immediate) {
+      var canApply = !timeout;
+      timeout = setTimeout(function () {
+        timeout = null; // 在 wait 时间后防抖函数才可以再次被触发
+      }, wait);
+      if (canApply) func.apply(context, args); // 第一次 !undefined 执行
+    } else {
+      timeout = setTimeout(() => {
+        func.apply(context, args);
+      }, wait);
+    }
   };
+}
+
+export function once(fn) {
+  let called = false;
+  return function () {
+    if (!called) {
+      called = true;
+      fn.apply(this, arguments);
+    }
+  };
+}
+
+export const Base64 = {
+  //加密
+  encode(str) {
+    return escape(btoa(str));
+  },
+  //解密
+  decode(str) {
+    return atob(unescape(str));
+  },
 };
