@@ -96,8 +96,22 @@ const VerificationRules = {
  * @returns
  */
 export function checkType(str, type) {
-  return VerificationRules[type](str);
+  let checkFn = VerificationRules[type];
+  if (!checkFn) {
+    throw new Error('请指定检测的类型，如：checkType("", "empty")');
+  }
+  return checkFn(str);
 }
+
+/**
+ * Object 在obj中是否有key
+ * @param {*} obj
+ * @param {*} key
+ * @returns
+ */
+export const hasOwn = function (obj, key) {
+  return obj != null && hasOwnProperty.call(obj, key);
+};
 
 export const shallowCopy = (obj) => {
   // 只拷贝对象
@@ -143,6 +157,9 @@ export const omit = (obj = {}, props = []) => {
 
 export const only = (obj, keys) => {
   obj = obj || {};
+  if ('string' !== typeof keys) {
+    throw Error('keys type error！keys parmas eg: "id name"');
+  }
   if ('string' == typeof keys) keys = keys.split(/ +/);
   return keys.reduce(function (ret, key) {
     if (null == obj[key]) return ret;
@@ -173,7 +190,7 @@ export function uniqueArrayObj(arr, name) {
  * @param  {Object} obj
  * @return {String}
  */
-export function qsStringify(obj) {
+export function stringify(obj) {
   var pairs = [];
   for (var key in obj) {
     var value = obj[key];
@@ -191,15 +208,21 @@ export function qsStringify(obj) {
   return pairs.join('&');
 }
 
-export function parseParam(url) {
-  var paramArr = unescape(url).split('&'),
+export function parse(url) {
+  var paramArr = decodeURI(url).split('&'),
     obj = {};
   for (var i = 0; i < paramArr.length; i++) {
     var item = paramArr[i];
     if (item.indexOf('=') != -1) {
-      var tmp = item.split('=');
+      let temp = item.split('=');
+      let key = temp[0];
+      let val = unescape(temp[1]);
       // unicode 解码
-      obj[tmp[0]] = unescape(tmp[1]);
+      if (obj.hasOwnProperty(key)) {
+        obj[key] = [obj[key], val];
+      } else {
+        obj[key] = val;
+      }
     } else {
       obj[item] = true;
     }
