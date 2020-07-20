@@ -6,7 +6,9 @@
   "directories": {},
   "scripts": {
     "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
-    "test": "jest"
+    "test": "jest",
+    "dev": "cross-env NODE_ENV=development webpack",
+    "build": "cross-env NODE_ENV=production webpack -p"
   },
   "husky": {
     "hooks": {
@@ -42,9 +44,12 @@
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-conventional": "^9.1.1",
     "babel-jest": "^26.1.0",
+    "cross-env": "^7.0.2",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   }
 }

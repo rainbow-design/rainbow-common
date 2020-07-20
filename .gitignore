@@ -1,3 +1,4 @@
+dist
 config/*
 !config/default.*
 *.DS_Store
