@@ -1,0 +1,50 @@
+{
+  "name": "rainbow",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "directories": {},
+  "scripts": {
+    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
+    "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{html,md,json}": [
+      "prettier --write",
+      "git add"
+    ],
+    "test/*.{js}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanyue404/rainbow.js.git"
+  },
+  "keywords": [
+    "utils"
+  ],
+  "author": "yanyue404",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yanyue404/rainbow.js/issues"
+  },
+  "homepage": "https://github.com/yanyue404/rainbow.js#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "babel-jest": "^26.1.0",
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5"
+  }
+}
