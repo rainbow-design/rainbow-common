@@ -9,7 +9,7 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: isProd ? 'rainbow-utils.min.js' : 'rainbow-utils.js',
     libraryTarget: 'umd',
-    library: 'rainbow',
+    library: 'Rainbow',
   },
 };
 
