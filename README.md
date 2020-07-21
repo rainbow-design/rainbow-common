@@ -4,6 +4,33 @@
 
 Rainbow 的前端业务代码工具库
 
+## 使用
+
+**Browser:**
+
+```html
+<script src="./dist/rainbow-utils.min.js"></script>
+<script>
+  const R = Rainbow;
+</script>
+```
+
+**npm:**
+
+```bash
+$ npm install rainbow-utils -S
+```
+
+## API
+
+**Core**
+
+**Feat**
+
+**Storage**
+
+**Event**
+
 ### License
 
 Copyright © 2029, [yanyue404](https://github.com/yanyue404).
