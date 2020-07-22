@@ -1,4 +1,4 @@
-import { deepCopy } from '../src';
+import { deepCopy, shallowCopy } from '../src';
 
 const obj = {
   id: '1',
@@ -35,5 +35,15 @@ describe('deepCopy', () => {
   temp[0].id = 123;
   test(`The result is another tree.`, () => {
     expect(temp).not.toEqual(tree);
+  });
+});
+
+describe('shallowCopy', () => {
+  const obj2 = shallowCopy(obj);
+  obj2['like'][0] = 'swim'; // 引用类型变更
+  obj2['friend'] = 'joe'; // 基本类型变更
+  test(`The result is another obj.`, () => {
+    expect(obj['like']).toEqual(['swim', 'basketball']); // 原对象发生指针变化
+    expect(obj['friend']).toEqual('heizi'); // 没有发生改变
   });
 });

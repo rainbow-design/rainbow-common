@@ -23,15 +23,16 @@ export const isUndef = (v) => {
  * arguments obj ...
  * @returns obj
  */
-export const extend = (target) => {
-  for (let i = 1, len = arguments.length; i < len; i++) {
-    for (let prop in arguments[i]) {
+export function extend(target) {
+  for (var i = 1, len = arguments.length; i < len; i++) {
+    for (var prop in arguments[i]) {
       if (arguments[i].hasOwnProperty(prop)) {
         target[prop] = arguments[i][prop];
       }
     }
   }
-};
+  return target;
+}
 
 /**
  * 四舍五入 格式化数字
@@ -49,12 +50,7 @@ export function toFixed(number, fractionDigits) {
 // 验证规则
 const VerificationRules = {
   empty: function (str) {
-    return (
-      str == null ||
-      str == '' ||
-      str == undefined ||
-      typeof str == typeof undefined
-    );
+    return str === null || str === '' || str === undefined;
   },
   email: function (str) {
     return /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/.test(str);
@@ -63,11 +59,8 @@ const VerificationRules = {
     // 碰到 16* 开头的手机号 update
     return /^1[3|4|5|6|7|8|9][0-9]{9}$/.test(str);
   },
-  tel: function (str) {
-    return /^(0\d{2,3}-\d{7,8})(-\d{1,4})?$/.test(str);
-  },
   number: function (str) {
-    return /^[0-9]$/.test(str);
+    return /^[0-9]+$/.test(str);
   },
   english: function (str) {
     return /^[a-zA-Z]+$/.test(str);
@@ -112,11 +105,6 @@ export function checkType(str, type) {
 export const hasOwn = function (obj, key) {
   return obj != null && hasOwnProperty.call(obj, key);
 };
-
-// 将一组类数组转换为数组
-export function toArray(obj) {
-  return Array.from ? Array.from(obj) : Array.prototype.slice.call(obj);
-}
 
 export const shallowCopy = (obj) => {
   // 只拷贝对象
@@ -220,9 +208,12 @@ export function stringify(obj) {
       continue;
     }
     if (value instanceof Array) {
+      let ids = [];
       for (var i = 0; i < value.length; ++i) {
-        pairs.push(key + '[' + i + ']' + '=' + value[i]);
+        ids.push(value[i]);
       }
+      pairs.push(key + '=' + ids);
+
       continue;
     }
     pairs.push(key + '=' + obj[key]);
