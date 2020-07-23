@@ -3,7 +3,7 @@ class EventEmitter {
     this._cache = {};
     this._cache__reverse = {};
   }
-
+  // 先订阅
   $on(type, callback) {
     (this._cache[type] || (this._cache[type] = [])).push(callback);
     return this;
@@ -50,14 +50,9 @@ class EventEmitter {
     }
     this.$on(type, func);
   }
-  // 先发布后订阅
-  $pub(type, data, every = true) {
+  // 先发布
+  $pub(type, data) {
     if (this._cache__reverse[type]) {
-      // 只要一次
-      if (!every) {
-        this._cache__reverse[type] = [data];
-        return;
-      }
       this._cache__reverse[type].push(data);
     } else {
       this._cache__reverse[type] = [data];
@@ -66,8 +61,10 @@ class EventEmitter {
 
   $sub(type, callback) {
     const params = this._cache__reverse[type];
-    if (params) {
-      callback(params);
+    if (Array.isArray(params)) {
+      params.forEach((param) => {
+        callback(param);
+      });
     }
     return this;
   }
