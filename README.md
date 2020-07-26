@@ -33,5 +33,5 @@ $ npm install rainbow-utils -S
 
 ### License
 
-Copyright © 2029, [yanyue404](https://github.com/yanyue404).
+Copyright © 2020, [yanyue404](https://github.com/yanyue404).
 Released under the [MIT License](LICENSE).
