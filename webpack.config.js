@@ -1,6 +1,7 @@
 const path = require('path');
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
+const TerserPlugin = require('terser-webpack-plugin');
 
 const config = {
   mode: isDev ? 'development' : 'production',
@@ -10,6 +11,10 @@ const config = {
     filename: isProd ? 'rainbow-utils.min.js' : 'rainbow-utils.js',
     libraryTarget: 'umd',
     library: 'Rainbow',
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin({ sourceMap: true })],
   },
 };
 

@@ -8,6 +8,8 @@
     "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
     "test": "jest",
     "dev": "cross-env NODE_ENV=development webpack",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "build": "cross-env NODE_ENV=production webpack -p",
     "coverage": "jest --coverage",
     "report": "open ./coverage/lcov-report/index.html",
@@ -31,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yanyue404/rainbow.js.git"
+    "url": "git+https://github.com/rainbow-design/rainbow-utils.git"
   },
   "keywords": [
     "utils",
@@ -42,9 +44,9 @@
   "author": "yanyue404",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yanyue404/rainbow.js/issues"
+    "url": "https://github.com/rainbow-design/rainbow-utils/issues"
   },
-  "homepage": "https://github.com/yanyue404/rainbow.js#readme",
+  "homepage": "https://github.com/rainbow-design/rainbow-utils#readme",
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
@@ -59,6 +61,8 @@
     "nyc": "^15.1.0",
     "open": "^7.1.0",
     "prettier": "^2.0.5",
+    "terser-webpack-plugin": "^3.0.7",
+    "vuepress": "^1.5.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
   },
