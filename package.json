@@ -1,8 +1,8 @@
 {
   "name": "rainbow-utils",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "description": "Rainbow 的前端业务代码工具库",
-  "main": "index.js",
+  "main": "dist/rainbow-utils.min.js",
   "directories": {},
   "scripts": {
     "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
@@ -15,6 +15,7 @@
     "report": "open ./coverage/lcov-report/index.html",
     "upload-coverage": "jest --coverage && codecov -f ./coverage/coverage-final.json"
   },
+  "unpkg": "dist/rainbow-utils.min.js",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

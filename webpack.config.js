@@ -10,7 +10,11 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: isProd ? 'rainbow-utils.min.js' : 'rainbow-utils.js',
     libraryTarget: 'umd',
-    library: 'Rainbow',
+    library: {
+      root: 'Rainbow',
+      amd: 'rainbow-utils',
+      commonjs: 'rainbow-utils',
+    },
   },
   optimization: {
     minimize: true,
