@@ -14,6 +14,26 @@ Rainbow 的前端业务代码工具库
 $ npm install rainbow-utils -S
 ```
 
+```js
+const R = Rainbow;
+
+// core 使用方法:
+const { omit } = R;
+
+// feat 使用方式:
+new Date().formate('yyyy-MM-dd'); //  2020-07-07
+
+// modules 使用方法 (先导出):
+const { Storage } = R;
+
+// 使用:
+Storage.setItem('like', 'code', new Date(Date.now() + 1000));
+
+setTimeout(() => {
+  Storage.getItem('like'); // null
+}, 1000);
+```
+
 **CDN:**
 
 还可以通过 [unpkg.com/rainbow-utils](https://unpkg.com/rainbow-utils) 获取到最新版本的资源，在页面上使用 `script` 标签引入后即可开始使用.
@@ -51,6 +71,8 @@ $ npm install rainbow-utils -S
 
 - Promise.every
 - Date.formate
+
+### Modules
 
 **Storage**
 

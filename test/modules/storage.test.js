@@ -25,5 +25,5 @@ test('"Storage"', () => {
   setTimeout(() => {
     expect(Storage.getItem('like')).toBe(null);
     expect(Storage.getItem('like_expires')).toBe(null);
-  }, 1500);
+  }, 1000);
 });
