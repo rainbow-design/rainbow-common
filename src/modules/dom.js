@@ -117,34 +117,15 @@ export const Dom = {
       [].forEach.call(el, (node) => {
         node.parentNode.removeChild(node);
       });
+    } else if (el instanceof Array) {
+      // it's an array of elements
+      [].forEach.call(el, (node) => {
+        node.parentNode.removeChild(node);
+      });
     } else {
       throw new Error(
         'you can only pass Element, array of Elements or query string as argument',
       );
     }
-  },
-  /**
-   *
-   * @param {*} a dom 元素
-   * @param {*} b 事件类型 click change scroll
-   * @param {*} c function
-   * @param {*} d  参数默认false=》冒泡，true为捕获
-   */
-  addEvent: function (a, b, c, d) {
-    a.addEventListener
-      ? a.addEventListener(b, c, d)
-      : a.attachEvent('on' + b, c);
-  },
-  // removeEvent(dom, 'click', eMsgClose)
-  removeEvent: function (a, b, c, d) {
-    a.removeEventListener
-      ? a.removeEventListener(b, c, d)
-      : a.detachEvent('on' + b, c);
-  },
-  //获得事件元素
-  //event.target--非IE
-  //event.srcElement--IE
-  getTarget: function (event) {
-    return event.target || event.srcElement;
   },
 };

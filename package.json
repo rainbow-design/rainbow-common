@@ -1,6 +1,6 @@
 {
   "name": "rainbow-utils",
-  "version": "0.6.0",
+  "version": "0.7.5",
   "description": "Rainbow 的前端业务代码工具库",
   "main": "dist/rainbow-utils.min.js",
   "directories": {},
@@ -67,7 +67,5 @@
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
   },
-  "dependencies": {
-    "axios": "^0.19.2"
-  }
+  "dependencies": {}
 }

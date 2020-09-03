@@ -1,18 +1,46 @@
 import { Dom } from '../../src';
 
-test('"$"', () => {
-  document.body.innerHTML = `<div><button></button></div>`;
+test('"Dom"', () => {
+  document.body.innerHTML = `<div id="app">
+   <ul>
+   <li class="first">1</li>
+   <li class="second">2</li>
+   <li class="third">3</li>
+   </ul>
+  </div>`;
+
   // $
-  let button = Dom.$('button');
-  expect(button).not.toBe(null);
-
-  // index
-  expect(Dom.index(button)).toBe(0);
-
-  // remove
-  Dom.remove(button);
+  let UL = Dom.$('#app ul');
+  expect(UL).not.toBe(null);
 
   // $$
-  let button__again = Dom.$$('button');
-  expect(button__again).toEqual([]);
+  let LI = Dom.$$('#app ul li');
+  expect(LI.length).toEqual(3);
+
+  // index
+  let LI__first = Dom.$('#app .first');
+  expect(Dom.index(LI__first)).toBe(0);
+
+  // siblings
+  expect(Dom.siblings(LI__first).length).toBe(2);
+
+  // every & getStyle
+  Dom.every(LI, (dom) =>
+    Dom.css(dom, { color: '#ff0000', 'font-size': '18px' }),
+  );
+  expect(Dom.getStyle(Dom.$('#app .first'), 'color')).toEqual('rgb(255, 0, 0)');
+  expect(Dom.getStyle(Dom.$('#app .second'), 'font-size')).toEqual('18px');
+
+  // create & (append || prepend)
+  let LI_fourth = Dom.create(' <li class="fourth">4</li>');
+  Dom.append(Dom.$('#app ul'), [LI_fourth]);
+  expect(Dom.$$('#app ul li').length).toEqual(4);
+
+  let LI_Zero = Dom.create(' <li class="fourth">5</li>');
+  Dom.prepend(Dom.$('#app ul'), [LI_Zero]);
+  expect(Dom.$$('#app ul li').length).toEqual(5);
+
+  // remove
+  Dom.remove(Dom.$$('#app ul li'));
+  expect(Dom.$$('li').length).toEqual(0);
 });

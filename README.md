@@ -74,6 +74,20 @@ setTimeout(() => {
 
 ### Modules
 
+**Dom**
+
+- \$
+- \$\$
+- index
+- siblings
+- every
+- getStyle
+- css
+- create
+- append
+- prepend
+- remove
+
 **Storage**
 
 > localStorage 实现过期时间功能
