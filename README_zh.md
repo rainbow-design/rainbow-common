@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/rainbow-utils.svg?style=flat)](https://www.npmjs.com/package/rainbow-utils) [![Build Status](https://travis-ci.org/rainbow-design/rainbow-utils.svg?branch=master)](https://travis-ci.org/rainbow-design/rainbow-utils) [![codecov](https://codecov.io/gh/rainbow-design/rainbow-utils/branch/master/graph/badge.svg)](https://codecov.io/gh/rainbow-design/rainbow-utils)
 
-[English](<(https://github.com/rainbow-design/rainbow-utils/blob/master/README_zh.md)>) | 中文
+[English](https://github.com/rainbow-design/rainbow-utils/blob/master/README_zh.md) | 中文
 
 Rainbow 的 JavaScript 工具库
 
