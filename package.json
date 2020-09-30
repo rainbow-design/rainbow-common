@@ -1,6 +1,6 @@
 {
   "name": "rainbow-utils",
-  "version": "0.7.5",
+  "version": "0.9.0",
   "description": "Rainbow 的前端业务代码工具库",
   "main": "dist/rainbow-utils.min.js",
   "directories": {},

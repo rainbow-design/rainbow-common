@@ -62,10 +62,14 @@ const VerificationRules = {
   number: function (str) {
     return /^[0-9]+$/.test(str);
   },
+  // 货币金额（支持负数、千分位分隔符）https://any86.github.io/any-rule/
+  money: function (str) {
+    return /^-?\d+(,\d{3})*(\.\d{1,2})?$/.test(str);
+  },
   english: function (str) {
     return /^[a-zA-Z]+$/.test(str);
   },
-  allChinese: function (str) {
+  chinese: function (str) {
     return /^[\u4E00-\u9FA5]+$/.test(str);
   },
   hasChinese: function (str) {

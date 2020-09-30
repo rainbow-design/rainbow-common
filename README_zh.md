@@ -2,15 +2,15 @@
 
 [![NPM version](https://img.shields.io/npm/v/rainbow-utils.svg?style=flat)](https://www.npmjs.com/package/rainbow-utils) [![Build Status](https://travis-ci.org/rainbow-design/rainbow-utils.svg?branch=master)](https://travis-ci.org/rainbow-design/rainbow-utils) [![codecov](https://codecov.io/gh/rainbow-design/rainbow-utils/branch/master/graph/badge.svg)](https://codecov.io/gh/rainbow-design/rainbow-utils)
 
-English | [中文](https://github.com/rainbow-design/rainbow-utils/blob/master/README_zh.md)
+[English](<(https://github.com/rainbow-design/rainbow-utils/blob/master/README_zh.md)>) | 中文
 
-Rainbow's JavaScript utility library
+Rainbow 的 JavaScript 工具库
 
-## Usage
+## 使用
 
 **npm:**
 
-Recommended:
+推荐使用方法
 
 ```bash
 $ npm install rainbow-utils -S
@@ -19,16 +19,16 @@ $ npm install rainbow-utils -S
 ```js
 const R = require('rainbow-utils');
 
-// use core:
+// core 使用方法:
 const { omit } = R;
 
-// use feat:
+// feat 使用方式:
 new Date().formate('yyyy-MM-dd'); //  2020-07-07
 
-// wxport module:
+// modules 使用方法 (先导出):
 const { Storage } = R;
 
-// use:
+// 使用:
 Storage.setItem('like', 'code', new Date(Date.now() + 1000));
 
 setTimeout(() => {
@@ -38,7 +38,7 @@ setTimeout(() => {
 
 **CDN:**
 
-You can also get the latest version of resources through [unpkg.com/rainbow-utils](https://unpkg.com/rainbow-utils), and use the `script` tag on the page to import it and start using it.
+还可以通过 [unpkg.com/rainbow-utils](https://unpkg.com/rainbow-utils) 获取到最新版本的资源，在页面上使用 `script` 标签引入后即可开始使用.
 
 ```html
 <script src="https://unpkg.com/rainbow-utils"></script>
@@ -69,7 +69,7 @@ You can also get the latest version of resources through [unpkg.com/rainbow-util
 
 **Feat**
 
-> New features of the prototype extension
+> 原型扩展的新特性
 
 - Promise.every
 - Date.formate
@@ -92,7 +92,7 @@ You can also get the latest version of resources through [unpkg.com/rainbow-util
 
 **Storage**
 
-> LocalStorage new feature expiration time function
+> localStorage 实现过期时间功能
 
 - setItem
 - getItem
@@ -101,14 +101,14 @@ You can also get the latest version of resources through [unpkg.com/rainbow-util
 
 **Event**
 
-> Subscribe before publish
+> 先订阅后发布
 
 - \$on
 - \$emit
 - \$off
 - \$once
 
-> Publish before subscribe
+> 先发布后订阅
 
 - \$pub
 - \$sub
