@@ -1,6 +1,6 @@
-# rainbow-utils
+# rainbow-common
 
-[![NPM version](https://img.shields.io/npm/v/rainbow-utils.svg?style=flat)](https://www.npmjs.com/package/rainbow-utils) [![Build Status](https://travis-ci.org/yanyue404/rainbow-utils.svg?branch=master)](https://travis-ci.org/yanyue404/rainbow-utils) [![codecov](https://codecov.io/gh/yanyue404/rainbow-utils/branch/master/graph/badge.svg)](https://codecov.io/gh/yanyue404/rainbow-utils)
+[![NPM version](https://img.shields.io/npm/v/rainbow-common.svg?style=flat)](https://www.npmjs.com/package/rainbow-common) [![Build Status](https://travis-ci.org/yanyue404/rainbow-common.svg?branch=master)](https://travis-ci.org/yanyue404/rainbow-common) [![codecov](https://codecov.io/gh/yanyue404/rainbow-common/branch/master/graph/badge.svg)](https://codecov.io/gh/yanyue404/rainbow-common)
 
 Rainbow 的前端业务代码工具库
 
@@ -9,7 +9,7 @@ Rainbow 的前端业务代码工具库
 **Browser:**
 
 ```html
-<script src="./dist/rainbow-utils.min.js"></script>
+<script src="./dist/rainbow-common.min.js"></script>
 <script>
   const R = Rainbow;
 </script>
@@ -18,7 +18,7 @@ Rainbow 的前端业务代码工具库
 **npm:**
 
 ```bash
-$ npm install rainbow-utils -S
+$ npm install rainbow-common -S
 ```
 
 ## API

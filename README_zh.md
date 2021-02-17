@@ -1,8 +1,8 @@
-# rainbow-utils
+# rainbow-common
 
-[![NPM version](https://img.shields.io/npm/v/rainbow-utils.svg?style=flat)](https://www.npmjs.com/package/rainbow-utils) [![Build Status](https://travis-ci.org/rainbow-design/rainbow-utils.svg?branch=master)](https://travis-ci.org/rainbow-design/rainbow-utils) [![codecov](https://codecov.io/gh/rainbow-design/rainbow-utils/branch/master/graph/badge.svg)](https://codecov.io/gh/rainbow-design/rainbow-utils)
+[![NPM version](https://img.shields.io/npm/v/rainbow-common.svg?style=flat)](https://www.npmjs.com/package/rainbow-common) [![Build Status](https://travis-ci.org/rainbow-design/rainbow-common.svg?branch=master)](https://travis-ci.org/rainbow-design/rainbow-common) [![codecov](https://codecov.io/gh/rainbow-design/rainbow-common/branch/master/graph/badge.svg)](https://codecov.io/gh/rainbow-design/rainbow-common)
 
-[English](https://github.com/rainbow-design/rainbow-utils/blob/master/README_zh.md) | 中文
+[English](https://github.com/rainbow-design/rainbow-common/blob/master/README_zh.md) | 中文
 
 Rainbow 的 JavaScript 工具库
 
@@ -13,11 +13,11 @@ Rainbow 的 JavaScript 工具库
 推荐使用方法
 
 ```bash
-$ npm install rainbow-utils -S
+$ npm install rainbow-common -S
 ```
 
 ```js
-const R = require('rainbow-utils');
+const R = require('rainbow-common');
 
 // core 使用方法:
 const { omit } = R;
@@ -38,10 +38,10 @@ setTimeout(() => {
 
 **CDN:**
 
-还可以通过 [unpkg.com/rainbow-utils](https://unpkg.com/rainbow-utils) 获取到最新版本的资源，在页面上使用 `script` 标签引入后即可开始使用.
+还可以通过 [unpkg.com/rainbow-common](https://unpkg.com/rainbow-common) 获取到最新版本的资源，在页面上使用 `script` 标签引入后即可开始使用.
 
 ```html
-<script src="https://unpkg.com/rainbow-utils"></script>
+<script src="https://unpkg.com/rainbow-common"></script>
 ```
 
 ## API

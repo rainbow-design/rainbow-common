@@ -51,17 +51,6 @@ export const Dom = {
     }
     return a;
   },
-
-  getStyle: function (ele, attr) {
-    if (ele.currentStyle !== undefined) {
-      return ele.currentStyle[attr];
-    } else {
-      return window.getComputedStyle(ele, null)[attr]
-        ? window.getComputedStyle(ele, null)[attr]
-        : ele.getAttribute(attr);
-    }
-  },
-
   css: function (target, cssObj) {
     for (var prop in cssObj) {
       target.style[prop] = cssObj[prop];

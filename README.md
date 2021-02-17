@@ -1,8 +1,8 @@
-# rainbow-utils
+# rainbow-common
 
-[![NPM version](https://img.shields.io/npm/v/rainbow-utils.svg?style=flat)](https://www.npmjs.com/package/rainbow-utils) [![Build Status](https://travis-ci.org/rainbow-design/rainbow-utils.svg?branch=master)](https://travis-ci.org/rainbow-design/rainbow-utils) [![codecov](https://codecov.io/gh/rainbow-design/rainbow-utils/branch/master/graph/badge.svg)](https://codecov.io/gh/rainbow-design/rainbow-utils)
+[![NPM version](https://img.shields.io/npm/v/rainbow-common.svg?style=flat)](https://www.npmjs.com/package/rainbow-common) [![Build Status](https://travis-ci.org/rainbow-design/rainbow-common.svg?branch=master)](https://travis-ci.org/rainbow-design/rainbow-common) [![codecov](https://codecov.io/gh/rainbow-design/rainbow-common/branch/master/graph/badge.svg)](https://codecov.io/gh/rainbow-design/rainbow-common)
 
-English | [中文](https://github.com/rainbow-design/rainbow-utils/blob/master/README_zh.md)
+English | [中文](https://github.com/rainbow-design/rainbow-common/blob/master/README_zh.md)
 
 Rainbow's JavaScript utility library
 
@@ -13,35 +13,40 @@ Rainbow's JavaScript utility library
 Recommended:
 
 ```bash
-$ npm install rainbow-utils -S
+$ npm install rainbow-common -S
 ```
+
+**nuxt 项目**
 
 ```js
-const R = require('rainbow-utils');
+{
+  ...,
+  build: {
+    ...,
+    transpile: [/rainbow-common/],
+    ...
+  },
+  ...
+}
 
-// use core:
-const { omit } = R;
-
-// use feat:
-new Date().formate('yyyy-MM-dd'); //  2020-07-07
-
-// wxport module:
-const { Storage } = R;
-
-// use:
-Storage.setItem('like', 'code', new Date(Date.now() + 1000));
-
-setTimeout(() => {
-  Storage.getItem('like'); // null
-}, 1000);
 ```
 
-**CDN:**
+**webpack 项目**
 
-You can also get the latest version of resources through [unpkg.com/rainbow-utils](https://unpkg.com/rainbow-utils), and use the `script` tag on the page to import it and start using it.
+```js
+// 修改js配置
+   module: {
+        rules: [
+            {
+                test: /\.js$/,
+                // exclude: /(node_modules)/ // 修改前
+                exclude: function(path){ // 修改后
+                    return /(node_modules)/.test(path) && path.indexOf('rainbow-common') === -1;
+                },
+                ...,
+            }]
+   }
 
-```html
-<script src="https://unpkg.com/rainbow-utils"></script>
 ```
 
 ## API

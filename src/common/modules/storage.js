@@ -1,6 +1,9 @@
+const env = typeof window === 'undefined' ? 'global' : 'window';
 class StorageFn {
   constructor() {
-    this.ls = window.localStorage;
+    if (env === 'window') {
+      this.ls = window.localStorage;
+    }
   }
   /*-----------------localStorage---------------------*/
   setItem(key, val, expires) {
