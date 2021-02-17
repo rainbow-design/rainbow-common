@@ -61,5 +61,5 @@ test('"123456" is IDCard type.', () => {
 });
 
 test('"14012213331119987x" is IDCard type.', () => {
-  expect(checkType('14012213331119987x', 'IDCard')).toBe(true);
+  expect(checkType('230227198302151067', 'IDCard')).toBe(true);
 });

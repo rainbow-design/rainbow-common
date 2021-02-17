@@ -4,7 +4,7 @@
 
 English | [中文](https://github.com/rainbow-design/rainbow-common/blob/master/README_zh.md)
 
-Rainbow's JavaScript utility library
+Rainbow's modern JavaScript utility and components library.
 
 ## Usage
 

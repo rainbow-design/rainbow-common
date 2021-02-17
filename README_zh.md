@@ -4,7 +4,7 @@
 
 [English](https://github.com/rainbow-design/rainbow-common/blob/master/README_zh.md) | 中文
 
-Rainbow 的 JavaScript 工具库
+Rainbow 的 JavaScript 实用工具和组件库
 
 ## 使用
 
