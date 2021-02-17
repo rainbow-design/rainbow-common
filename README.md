@@ -35,7 +35,8 @@ $ npm install rainbow-common -S
 
 ```js
 // 修改js配置
-   module: {
+{
+     module: {
         rules: [
             {
                 test: /\.js$/,
@@ -46,6 +47,7 @@ $ npm install rainbow-common -S
                 ...,
             }]
    }
+}
 
 ```
 
