@@ -16,7 +16,7 @@ Recommended:
 $ npm install rainbow-common -S
 ```
 
-**nuxt 项目**
+**nuxt project**
 
 ```js
 {
@@ -31,7 +31,7 @@ $ npm install rainbow-common -S
 
 ```
 
-**webpack 项目**
+**webpack project**
 
 ```js
 // 修改js配置
@@ -51,75 +51,18 @@ $ npm install rainbow-common -S
 
 ```
 
-## API
+```js
+// to use (export first):
+import { Storage} 'rainbow-common';
 
-**Core**
+// use:
+Storage.setItem('like', 'code', new Date(Date.now() + 1000));
 
-- getType
-- isDef
-- isUndef
-- extend
-- toFixed
-- checkType
-- hasOwn
-- shallowCopy
-- deepCopy
-- omit
-- only
-- sortBy
-- uniqueArrayObj
-- stringify
-- parse
-- throttle
-- debounce
-- once
-
-**Feat**
-
-> New features of the prototype extension
-
-- Promise.every
-- Date.formate
-
-### Modules
-
-**Dom**
-
-- \$
-- \$\$
-- index
-- siblings
-- every
-- getStyle
-- css
-- create
-- append
-- prepend
-- remove
-
-**Storage**
-
-> LocalStorage new feature expiration time function
-
-- setItem
-- getItem
-- removeItem
-- clear
-
-**Event**
-
-> Subscribe before publish
-
-- \$on
-- \$emit
-- \$off
-- \$once
-
-> Publish before subscribe
-
-- \$pub
-- \$sub
-- \$remove
+setTimeout(() => {
+  Storage.getItem('like'); // null
+}, 1000);
+0);
+```
 
 ## License
 
