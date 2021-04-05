@@ -1,5 +1,5 @@
 export * from './core';
-export * from './feat';
+export * from './promise';
 export * from './array';
 export * from './object';
 export * from './url';
