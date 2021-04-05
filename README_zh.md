@@ -16,6 +16,39 @@ Rainbow 的 JavaScript 实用工具和组件库
 $ npm install rainbow-common -S
 ```
 
+**nuxt 项目**
+
+```js
+{
+  ...,
+  build: {
+    ...,
+    transpile: [/rainbow-common/],
+    ...
+  },
+  ...
+}
+```
+
+**webpack 项目**
+
+```js
+// 修改js配置
+{
+     module: {
+        rules: [
+            {
+                test: /\.js$/,
+                // exclude: /(node_modules)/ // 修改前
+                exclude: function(path){ // 修改后
+                    return /(node_modules)/.test(path) && path.indexOf('rainbow-common') === -1;
+                },
+                ...,
+            }]
+   }
+}
+```
+
 ```js
 //  使用方法 (先导出):
 import { Storage} 'rainbow-common';
