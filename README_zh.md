@@ -20,13 +20,9 @@ $ npm install rainbow-common -S
 
 ```js
 {
-  ...,
   build: {
-    ...,
     transpile: [/rainbow-common/],
-    ...
   },
-  ...
 }
 ```
 
@@ -35,17 +31,20 @@ $ npm install rainbow-common -S
 ```js
 // 修改js配置
 {
-     module: {
-        rules: [
-            {
-                test: /\.js$/,
-                // exclude: /(node_modules)/ // 修改前
-                exclude: function(path){ // 修改后
-                    return /(node_modules)/.test(path) && path.indexOf('rainbow-common') === -1;
-                },
-                ...,
-            }]
-   }
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        // exclude: /(node_modules)/ // 修改前
+        exclude: function (path) {
+          // 修改后
+          return (
+            /(node_modules)/.test(path) && path.indexOf('rainbow-common') === -1
+          );
+        },
+      },
+    ];
+  }
 }
 ```
 
