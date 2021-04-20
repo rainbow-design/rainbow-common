@@ -1,22 +1,17 @@
 const path = require('path');
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
-const TerserPlugin = require('terser-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
   mode: isDev ? 'development' : 'production',
-  entry: './src/index.js',
+  entry: {
+    main: './demos/main.js',
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: isProd ? 'rainbow-common.min.js' : 'rainbow-common.js',
-    libraryTarget: 'umd',
-    globalObject: 'this',
-    library: {
-      root: 'Rainbow',
-      amd: 'rainbow-common',
-      commonjs: 'rainbow-common',
-    },
+    path: __dirname,
+    filename: 'build.js',
   },
   module: {
     rules: [
@@ -28,6 +23,10 @@ const config = {
         test: /\.js$/,
         exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
         loader: 'babel-loader',
+        options: {
+          presets: ['es2015'],
+          plugins: ['transform-vue-jsx', 'transform-runtime'],
+        },
       },
       {
         test: /\.s[ac]ss$/i,
@@ -44,15 +43,28 @@ const config = {
         ],
       },
       {
-        test: /.(png|jpg|gif)$/i,
-        loader: 'file-loader',
+        test: /\.css$/i,
+        use: ['css-loader'],
+      },
+      {
+        test: /.(png|jpe?g|gif|svg)$/i,
+        loader: 'url-loader',
+        options: {
+          limit: 1024,
+          esModule: false,
+        },
       },
     ],
   },
-  plugins: [new VueLoaderPlugin()],
+  plugins: [
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'MY Test App',
+      template: './index.html',
+    }),
+  ],
   optimization: {
     minimize: true,
-    // minimizer: [new TerserPlugin({ sourceMap: true })],
   },
 };
 

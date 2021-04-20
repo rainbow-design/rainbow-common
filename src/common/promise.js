@@ -1,36 +1,84 @@
-// 所有的 promise 都错误才触发 reject
-export const every = (promises) => {
+export const race = (promises) => {
+  if (!Array.isArray(promises)) {
+    throw Error('argument must be a array');
+  }
   return new Promise((resolve, reject) => {
-    let resultAry = [],
-      errorAry = [],
-      index = 0,
-      index__error = 0;
-    for (let i = 0; i < promises.length; i++) {
+    let n = 0;
+    while (n < promises.length) {
       Promise.resolve(promises[i])
-        .then((result) => {
-          index++;
-          resultAry[i] = result;
-          if (
-            index === promises.length ||
-            index + index__error === promises.length
-          ) {
-            resolve(resultAry);
-          }
+        .then((res) => {
+          // * 出现第一个被 resolve 直接 resolve
+          resolve(res);
         })
         .catch((err) => {
-          index__error++;
-          errorAry[i] = resultAry[i] = { reason: err };
-          // 都有都错误
-          if (index__error === promises.length) {
-            reject(errorAry);
+          // * 出现第一个被 reject 直接 reject
+          reject(err);
+        });
+      i++;
+    }
+  });
+};
+
+// 所有的 promise 都错误才触发 reject
+export const every = (promises) => {
+  if (!Array.isArray(promises)) {
+    throw Error('argument must be a array');
+  }
+  return new Promise((resolve, reject) => {
+    let result = [],
+      fulfilled__num = 0,
+      rejected__num = 0;
+    for (let i = 0; i < promises.length; i++) {
+      Promise.resolve(promises[i])
+        .then((res) => {
+          fulfilled__num++;
+          // ! 保证结果顺序
+          result[i] = res;
+          if (
+            fulfilled__num === promises.length ||
+            fulfilled__num + rejected__num === promises.length
+          ) {
+            resolve(result);
           }
-          if (index + index__error === promises.length) {
-            resolve(resultAry);
+        })
+        .catch((error) => {
+          rejected__num++;
+          result[i] = { reason: error };
+          // ! 都为错误才抛出
+          if (rejected__num === promises.length) {
+            reject(result);
+          }
+          if (fulfilled__num + rejected__num === promises.length) {
+            resolve(result);
           }
         });
     }
-  })
-}
+  });
+};
+
+export const all = (promises) => {
+  if (!Array.isArray(promises)) {
+    throw Error('argument must be a array');
+  }
+  return new Promise((resolve, reject) => {
+    let result = [],
+      fulfilled__num = 0;
+    for (let i = 0; i < promises.length; i++) {
+      Promise.resolve(promises[i])
+        .then((res) => {
+          fulfilled__num++;
+          // ! 保证结果顺序
+          result[i] = res;
+          if (fulfilled__num === promises.length) {
+            resolve(result);
+          }
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    }
+  });
+};
 
 export const allSettled = (promises) => {
   return new Promise((resolve, reject) => {

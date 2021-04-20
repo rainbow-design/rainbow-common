@@ -1,0 +1,14 @@
+/* 坡度白色过渡阴影 */
+.gradient-shadow {
+  width: 100%;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(255, 255, 255, 0)),
+    to(#fff)
+  );
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), #fff);
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 0), #fff);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff);
+}

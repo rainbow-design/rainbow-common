@@ -7,15 +7,6 @@
 export const getType = (a) => {
   return Object.prototype.toString.call(a).slice(8, -1);
 };
-
-export const isNumber = (obj) => {
-  return typeof obj === 'number';
-};
-
-export function isFunction(value) {
-  return typeof value === 'function';
-}
-
 // 是否已定义
 export const isDef = (value) => {
   if (
@@ -40,8 +31,21 @@ export const isDef = (value) => {
 };
 
 export const isUndef = (v) => {
-  return !isDef(v);
+  return v === undefined || v === null;
 };
+
+export function isFunction() {
+  return (
+    Object.prototype.toString.call(function () {
+      return 1;
+    }) === '[object Function]'
+  );
+}
+
+export function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
 
 /**
  * 对象扩展
@@ -61,31 +65,58 @@ export function extend(target) {
   return target;
 }
 
+// 验证规则
+const VerificationRules = {
+  empty: function (str) {
+    return str === null || str === '' || str === undefined;
+  },
+  email: function (str) {
+    return /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/.test(str);
+  },
+  phone: function (str) {
+    // 碰到 16* 开头的手机号 update
+    return /^1[3|4|5|6|7|8|9][0-9]{9}$/.test(str);
+  },
+  number: function (str) {
+    return /^[0-9]+$/.test(str);
+  },
+  // 货币金额（支持负数、千分位分隔符）https://any86.github.io/any-rule/
+  money: function (str) {
+    return /^-?\d+(,\d{3})*(\.\d{1,2})?$/.test(str);
+  },
+  english: function (str) {
+    return /^[a-zA-Z]+$/.test(str);
+  },
+  chinese: function (str) {
+    return /^[\u4E00-\u9FA5]+$/.test(str);
+  },
+  hasChinese: function (str) {
+    return /^[\u4E00-\u9FA5]/.test(str);
+  },
+  pwd_normal: function (str) {
+    // 同时含有数字和字母，且长度要在8-16位之间
+    return /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/.test(str);
+  },
+  IDCard: function (str) {
+    // (15位、18位数字)，最后一位是校验位，可能为数字或字符X
+    return /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(str);
+  },
+};
+
 /**
- * 四舍五入 格式化数字
+ * 按类型校验字符串
  *
- * @param {*} number 8440.55
- * @param {*} fractionDigits 1 小数位数
- * @returns 8440.6
+ * @param {*} str
+ * @param {*} type
+ * @returns
  */
-export function toFixed(number, fractionDigits) {
-  var times = Math.pow(10, fractionDigits);
-  var roundNum = Math.round(number * times) / times;
-  return roundNum.toFixed(fractionDigits);
-}
-
-export const sleep = (second) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, second * 1000);
-  });
-};
-
-export const trim = (str) => {
-  if (typeof str !== 'string') {
-    throw new Error('trim 参数需要为 String 类型');
+export function checkType(str, type) {
+  let checkFn = VerificationRules[type];
+  if (!checkFn) {
+    throw new Error('请指定检测的类型，如：checkType("", "empty")');
   }
-  return str.replace(/(^\s*)|(\s*$)/g, '');
-};
+  return checkFn(str);
+}
 
 export function throttle(fn, wait = 1500) {
   let _lastTime = null;
@@ -136,40 +167,5 @@ export function once(fn) {
   };
 }
 
-// loadJs(location.origin + '/xxx.cdn/a.js').then(() => {})
-export function loadJs(url, callback, attr) {
-  if (!isFunction(callback)) {
-    attr = callback;
-    callback = null;
-  }
-  return new Promise((resolve, reject) => {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    if (isObject(attr)) {
-      Object.keys(attr).forEach((key) => {
-        if (attr.hasOwnProperty(key)) {
-          script.setAttribute(key, attr[key]);
-        }
-      });
-    }
-    if (script.readyState) {
-      script.onreadystatechange = function () {
-        if (script.readyState == 'loaded' || script.readyState == 'complete') {
-          script.onreadystatechange = null;
-          isFunction(callback) && callback();
-          resolve();
-        }
-      };
-    } else {
-      script.onload = function () {
-        isFunction(callback) && callback();
-        resolve();
-      };
-    }
-    script.onerror = function () {
-      reject();
-    };
-    script.src = url;
-    document.head.appendChild(script);
-  });
-}
+
+

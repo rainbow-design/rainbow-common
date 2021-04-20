@@ -100,3 +100,24 @@ export function uniqueArrayObj(arr, name) {
     }
   });
 }
+
+export const listChunk = (list = [], chunkSize = 1) => {
+  const result = [];
+  const tmp = [...list];
+  if (!Array.isArray(list) || !Number.isInteger(chunkSize) || chunkSize <= 0) {
+    return result;
+  }
+  while (tmp.length) {
+    result.push(tmp.splice(0, chunkSize));
+  }
+  return result;
+};
+
+// 将二维数组转化为一维数组 （即：数组扁平化）
+export const flat = (arr) =>
+  arr.reduce((prev, cur, index, arr) => {
+    if (Array.isArray(cur)) {
+      return prev.concat(...flat(cur));
+    }
+    return prev.concat(cur);
+  }, []);
