@@ -3,14 +3,215 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>组件 预览 Demo</title>
+    <style>
+      html {
+        color: #000;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        height: 100%;
+        font-family: 微软雅黑, 黑体, Helvetica, Arial, Tahoma, sans-serif;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-size: 13.3333333333vw;
+      }
+      body {
+        line-height: 1.5;
+        font-size: 0.28rem;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        margin: 0 auto !important;
+      }
+      body,
+      html {
+        background: #fff;
+      }
+      @media screen and (min-width: 540px) {
+        html {
+          font-size: 72px !important;
+        }
+        body {
+          width: 540px;
+        }
+      }
+      article,
+      aside,
+      blockquote,
+      body,
+      button,
+      code,
+      dd,
+      details,
+      div,
+      dl,
+      dt,
+      fieldset,
+      figcaption,
+      figure,
+      footer,
+      form,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      header,
+      hgroup,
+      hr,
+      input,
+      legend,
+      li,
+      menu,
+      nav,
+      ol,
+      p,
+      pre,
+      section,
+      td,
+      textarea,
+      th,
+      ul {
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        outline: 0;
+        word-break: normal;
+        -webkit-tap-highlight-color: transparent;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: 100%;
+        font-weight: 500;
+      }
+      .clearfix:after,
+      .clearfix:before {
+        content: ' ';
+        display: table;
+        height: 0;
+        visibility: hidden;
+      }
+      .clearfix:after {
+        clear: both;
+      }
+      a,
+      img,
+      input {
+        -webkit-tap-highlight-color: transparent;
+      }
+      input {
+        -webkit-user-modify: read-write-plaintext-only;
+        border: 0;
+        outline: medium;
+      }
+      input,
+      option,
+      select,
+      textarea {
+        font-size: 100%;
+        font-family: inherit;
+        -webkit-appearance: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+      fieldset,
+      img {
+        border: 0 none;
+      }
+      address,
+      caption,
+      cite,
+      code,
+      dfn,
+      em,
+      th,
+      var {
+        font-style: normal;
+        font-weight: 500;
+      }
+      li,
+      ol,
+      ul {
+        list-style: none;
+      }
+      a,
+      ins {
+        text-decoration: none;
+      }
+      mark {
+        background: 0 0;
+      }
+      textarea {
+        resize: none;
+      }
+      img {
+        display: block;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+      a {
+        text-decoration: none;
+      }
+      b,
+      em,
+      i,
+      li {
+        font-style: normal !important;
+      }
+    </style>
+    <!-- <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css"
+/> -->
   </head>
+  <script>
+    (function (doc, win) {
+      var sWide, sketchWide;
+      sketchWide = 0;
+      sWide = sketchWide == 0 ? 750 : sketchWide;
+      var docEl = doc.documentElement,
+        resizeEvt =
+          'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function () {
+          var clientWidth = docEl.clientWidth;
+          if (!clientWidth) {
+            return;
+          }
+          if (clientWidth < 320) {
+            docEl.style.fontSize = (100 * 320) / sWide + 'px';
+          } else {
+            if (clientWidth > 540) {
+              docEl.style.fontSize = (100 * 540) / sWide + 'px';
+            } else {
+              docEl.style.fontSize = 100 * (clientWidth / sWide) + 'px';
+            }
+          }
+        };
+      if (!doc.addEventListener) {
+        return;
+      }
+      win.addEventListener(resizeEvt, recalc, false);
+      doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+  </script>
   <body>
-    <!-- <script src="./dist/rainbow-common.js"></script> -->
-    <script src="https://unpkg.com/rainbow-common"></script>
-    <script>
-      console.log(Rainbow);
-      console.dir(Promise);
-    </script>
+    <div id="app"></div>
   </body>
 </html>

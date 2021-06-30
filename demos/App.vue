@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <h1>@Rainbow-common</h1>
-    <!-- <DialogWrap></DialogWrap> -->
+    <DialogWrap></DialogWrap>
     <!-- <LoadingWrap></LoadingWrap> -->
     <!-- <ToastWrap></ToastWrap> -->
     <!-- <OverlayWrap></OverlayWrap> -->
     <!-- <ScrollTextWrap></ScrollTextWrap> -->
-    <FormWrap></FormWrap>
+    <!-- <FormWrap></FormWrap> -->
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
     ToastWrap,
     OverlayWrap,
     ScrollTextWrap,
-    FormWrap
+    FormWrap,
   },
 };
 </script>

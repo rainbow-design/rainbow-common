@@ -22,8 +22,11 @@ export default {
   methods: {
     onConfirm() {
       this.show = false;
+      this.$notify.showTips('通知内容');
+      this.$notify({ type: 'danger', message: '通知内容' });
     },
   },
+  mounted() {},
 };
 </script>
 

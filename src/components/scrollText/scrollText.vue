@@ -16,7 +16,6 @@
             transition:
               animate == true && index == 1 ? 'all ' + time * 0.5 + 's' : '',
           },
-          { opacity: animate == true && index == 1 ? 0.6 : 1 },
         ]"
       >
         <p>{{ item }}</p>
@@ -32,6 +31,14 @@ export default {
       default: [],
     },
     time: {
+      type: Number,
+      default: 1,
+    },
+    gap: {
+      type: String,
+      default: '0px',
+    },
+    num: {
       type: Number,
       default: 1,
     },
@@ -101,14 +108,14 @@ export default {
     height: 0.3rem;
     background: #fff;
     color: #333;
-    opacity: 0.6;
+    // opacity: 0.6;
     overflow: hidden;
     white-space: nowrap;
     font-size: 0.22rem;
     margin: 0;
   }
   &:first-child {
-    opacity: 0.3;
+    // opacity: 0.3;
     margin-top: 0;
   }
 }
